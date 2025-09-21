@@ -17,4 +17,8 @@ public class SignupRequest {
     private String password;
     @NotBlank
     private String userRole;
+
+    // Lv.1-2: nickname 필드 추가
+    @NotBlank
+    private String nickname;
 }
