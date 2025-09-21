@@ -25,6 +25,10 @@ public class TodoService {
     private final TodoRepository todoRepository;
     private final WeatherClient weatherClient;
 
+    // Lv.1-1
+    // Transaction : DB 작업을 하나의 논리적 단위 묶어서 실행하고, 모든 작업이 성공되면 커밋, 실패하면 롤백하는 기능 지원
+    // 클래스 레벨에서 readOnly = true가 적용되었으므로, 저장을 해야하는 saveTodo 메서드에 @Transactional을 오버라이드
+    @Transactional
     public TodoSaveResponse saveTodo(AuthUser authUser, TodoSaveRequest todoSaveRequest) {
         User user = User.fromAuthUser(authUser);
 
