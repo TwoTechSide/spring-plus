@@ -30,7 +30,10 @@ public class Todo extends Timestamped {
     @OneToMany(mappedBy = "todo", cascade = CascadeType.REMOVE)
     private List<Comment> comments = new ArrayList<>();
 
-    @OneToMany(mappedBy = "todo")
+    // Lv.2-6: cascade = PERSIST | ALL
+    // Manager가 T0do에 완전히 종속적인 경우 ALL + orphanRemoval = true / 그렇지 않으면 PERSIST
+    //   -> orphanRemoval : 부모 엔티티와 연관 관계가 끊어지면 자동으로 DB 에서 삭제 (CascadeType.REMOVE : 부모 엔티티 삭제시)
+    @OneToMany(mappedBy = "todo", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Manager> managers = new ArrayList<>();
 
     public Todo(String title, String contents, String weather, User user) {
